@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد أضحى مبارك ❤</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f4f7f6 0%, #e2ece9 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* حاوية الكارت */
+        .card-container {
+            width: 380px;
+            height: 520px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* عند الضغط وتفعيل الكلاس يلف الكارت */
+        .card-container.open {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        /* واجهة الكارت الخارجية */
+        .card-front {
+            background: linear-gradient(135deg, #0f4c3a 0%, #1b6651 100%);
+            border: 3px solid #d4af37;
+            color: #fff;
+        }
+
+        .card-front h2 {
+            font-size: 28px;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-front p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* الزرار الدهبي */
+        .open-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
+            color: #0f4c3a;
+            border: none;
+            padding: 12px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transition: transform 0.3s;
+        }
+
+        /* ظهر الكارت */
+        .card-back {
+            background: #ffffff;
+            border: 3px solid #1b6651;
+            transform: rotateY(180deg);
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .card-back h3 {
+            color: #1b6651;
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #d4af37;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-back p {
+            color: #2b2b2b;
+            font-size: 17px;
+            line-height: 1.8;
+            text-align: justify;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* البالونات */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 65px;
+            border-radius: 50%;
+            pointer-events: none;
+            bottom: -100px;
+            opacity: 0.8;
+            animation: floatUp 6s linear forwards;
+            z-index: 1;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 22px;
+            width: 2px;
+            height: 15px;
+            background: #999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* الخروف */
+        .eid-sheep {
+            position: absolute;
+            font-size: 40px;
+            pointer-events: none;
+            bottom: -100px;
+            animation: jumpUp 5s ease-in forwards;
+            z-index: 2;
+        }
+
+        @keyframes jumpUp {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateX(50px) scale(1.2);
+            }
+
+            100% {
+                transform: translateY(-115vh) translateX(-50px) scale(0.8);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card-container" id="myCard" onclick="openCard()">
+        <!-- الواجهة الخارجية -->
+        <div class="card-face card-front">
+            <h2>عيد أضحى مبارك ✨</h2>
+            <p>لأغلى الناس على قلبي..</p>
+            <button class="open-btn">افتح عديتك ✉</button>
+        </div>
+
+        <!-- المحتوى الداخلي -->
+        <div class="card-face card-back">
+            <h3>عيد أضحى مبارك يا كل أعيادي ❤</h3>
+            <p>
+                بصي، أنا يمكن مش بعرف أزوق الكلام أوي، بس اللي عايزك تتأكدي منه إني مش شايف في الدنيا دي كلها غيرك. 😍
+                حبك هو اللي مخليني عايز أكون أحسن كل يوم، ووجودك جنبي بيديني طاقة تهد جبال.. كل سنة وإنتِ كل دنيتي
+                وحياتي. 🌍❤ <br><br>
+                معاكي عرفت يعني إيه حد يبقى خايف عليا بجد ومستحملني وباقي عليا في كل الظروف. إنتِ نعمة كبيرة من ربنا،
+                وبدعي في كل وقت إنه يحفظك ليا ونفضل دايماً سند لبعض ومكملين طريقنا سوا لحد الآخر. 🗝✨ <br><br>
+                كل عام وإنتِ معايا يا حبيبتي، وعيد سعيد عليكي يا رب! 🐏🎈<br><br>
+                بحبك يا قرة عيني 🌍❤
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function openCard() {
+            const card = document.getElementById('myCard');
+            if (!card.classList.contains('open')) {
+                card.classList.add('open');
+
+                // تشغيل البالونات والخرفان
+                setInterval(createBalloon, 300);
+                setInterval(createSheep, 800);
+            }
+        }
+
+        function createBalloon() {
+            const colors = ['#ff4d6d', '#ffb3c6', '#4ea8de', '#56ab2f', '#a8ff78', '#ffb703'];
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+            document.body.appendChild(balloon);
+            setTimeout(() => {
+                balloon.remove();
+            }, 7000);
+        }
+
+        function createSheep() {
+            const sheeps = ['🐏', '🐑'];
+            const sheep = document.createElement('div');
+            sheep.classList.add('eid-sheep');
+
+            sheep.innerHTML = sheeps[Math.floor(Math.random() * sheeps.length)];
+            sheep.style.left = Math.random() * 100 + 'vw';
+            sheep.style.animationDuration = (Math.random() * 2 + 4) + 's';
+
+            document.body.appendChild(sheep);
+            setTimeout(() => {
+                sheep.remove();
+            }, 6000);
+        }
+    </script>
+</body>
+
+</html>
