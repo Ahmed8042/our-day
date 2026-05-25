@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذكرى حبنا</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe3ec 0%, #ffb3c6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* تصميم الزرار على شكل قلب بينبض */
+        .heart-btn {
+            width: 150px;
+            height: 150px;
+            background-color: #ff4d6d;
+            position: relative;
+            transform: rotate(-45deg);
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+            cursor: pointer;
+            animation: pulse 1.2s infinite;
+            border: none;
+            outline: none;
+        }
+
+        .heart-btn::before,
+        .heart-btn::after {
+            content: "";
+            width: 150px;
+            height: 150px;
+            background-color: #ff4d6d;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-btn::before {
+            top: -75px;
+            left: 0;
+        }
+
+        .heart-btn::after {
+            top: 0;
+            left: 75px;
+        }
+
+        .heart-btn span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            z-index: 11;
+            white-space: nowrap;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) rotate(-45deg);
+            }
+
+            50% {
+                transform: scale(1.1) rotate(-45deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(-45deg);
+            }
+        }
+
+        /* صندوق الكلام السري معدل عشان يظهر فوراً */
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            max-width: 500px;
+            border: 2px solid #ff758f;
+            display: none;
+            /* هيبدأ مخفي */
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .message-box.show {
+            display: block !important;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .message-box p {
+            color: #c9184a;
+            font-size: 22px;
+            line-height: 1.8;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* تأثير القلوب الطايرة */
+        .falling-heart {
+            position: absolute;
+            color: #ff4d6d;
+            pointer-events: none;
+            z-index: 1;
+            animation: float linear forwards;
+            bottom: -50px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-105vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- الزرار القلب -->
+        <button class="heart-btn" id="heartBtn" onclick="revealMessage()">
+            <span>دوس هنا ❤</span>
+        </button>
+
+        <!-- رسالة التهنئة -->
+        <div class="message-box" id="messageBox">
+            <p>في ذكرى اليوم اللي جمع قلوبنا وخرجت فيه الكلمة اللي غيرت كل حاجة، حابب أقولك إني لسه بقع في حبك كل يوم
+                وكأنها أول مرة. شكراً على كل لحظة حلوة، على وجودك اللي بيطمن، وعلى حبك اللي مخلي الدنيا أحلى. كل عيد حب
+                واحنا سوا، وكل سنة وأنتِ كل حياتي. ❤✨</p>
+        </div>
+    </div>
+
+    <script>
+        function revealMessage() {
+            const btn = document.getElementById('heartBtn');
+            const box = document.getElementById('messageBox');
+
+            // إخفاء الزرار تماماً
+            btn.style.display = 'none';
+
+            // إظهار الصندوق وتطبيق الفيد
+            box.style.display = 'block';
+            setTimeout(() => {
+                box.classList.add('show');
+            }, 10);
+
+            // تشغيل نافورة القلوب
+            setInterval(createHeart, 100);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('falling-heart');
+            heart.innerHTML = '❤';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animationDuration = Math.random() * (2 + 1.5); // أسرع شوية لشكل مبهج أكتر
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3500);
+        }
+    </script>
+</body>
+
+</html>
